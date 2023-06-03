@@ -10,13 +10,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up MinGW
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: "MINGW64"
+      - name: Install Chocolatey
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
       - name: Install Make
-        run: mingw-get install -y mingw64/mingw-w64-x86_64-make
+        run: choco install -y make
 
       - name: Build
         run: make
