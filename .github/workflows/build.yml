@@ -12,10 +12,11 @@ jobs:
 
       - name: Set up MinGW
         uses: msys2/setup-msys2@v2
+        with:
+          msystem: "MINGW64"
 
       - name: Install Make
-        run: pacman --noconfirm -S mingw-w64-x86_64-make
+        run: mingw-get install -y mingw64/mingw-w64-x86_64-make
 
       - name: Build
         run: make
-
